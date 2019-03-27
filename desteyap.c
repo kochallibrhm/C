@@ -1,4 +1,4 @@
-#include <stdio.h>      //The program that makes deck and shuffles it.
+#include <stdio.h>      //The program that makes deck and shuffles.
 #include <time.h>
 #include <stdlib.h>
 typedef struct {
