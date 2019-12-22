@@ -1,3 +1,5 @@
+// ********** New updated linked list without typedef. (with english variable and function names) *************
+
 #include <stdio.h>
 #include <stdlib.h>
 struct node{
