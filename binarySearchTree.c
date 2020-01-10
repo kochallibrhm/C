@@ -57,11 +57,17 @@ int isThereNotRecursive(struct node *tree, int key){  // if the key does exist i
     
 }
 
-int funcMax(struct node *tree){   //the function that returns maximum key of the list.
+int funcMax(struct node *tree){   //the function that returns maximum key of the list. NOT recursive.
    while(tree -> right != NULL){
        tree = tree -> right;
    } 
    return tree -> data;
+}
+
+int funcMin(struct node *tree){  // the function that returns minimum key of the list. RECURSIVE
+    if(tree -> left == NULL)
+        return tree -> data;
+    funcMin(tree -> left);
 }
 
 int isLeaf(struct node* tree, int key){ //the function that returns 1 if the key is leaf node.
@@ -103,6 +109,8 @@ int main()
     tree = add(tree, 24);
     tree = add(tree, 4);
     tree = add(tree, 44);
+    tree = add(tree, 2);
+    tree = add(tree, 54);
     print_inorder(tree);
     
     int check = isThere(tree,15);
@@ -113,6 +121,9 @@ int main()
 
     int leaf = isLeaf(tree, 4);
     printf("\nIs leaf: %d", leaf);
+    
+    int min = funcMin(tree);
+    printf("\nMin value: %d",min);
 
     return 0;
 }
