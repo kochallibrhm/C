@@ -62,23 +62,7 @@ void addtoTop(int newElement, struct node **nodeStart){
     newNode -> next = *nodeStart;
     *nodeStart = newNode;
 }
-void siraliEkle(int newElement, struct node **nodeStart){
-    struct node *eklenen, *tutucu,*gezici;
-    gezici = *nodeStart;
-    while(gezici -> next != NULL && gezici -> data <= newElement){
-        tutucu = gezici;
-        gezici = gezici -> next;
-    }
-    eklenen = createNode(newElement);
-    if(gezici == *nodeStart){
-        eklenen -> next = *nodeStart;
-        *nodeStart = eklenen; 
-    }
-    else{
-        tutucu -> next = eklenen;
-        eklenen -> next = gezici; 
-    }
-}
+
 /*void addtoTop2(int newElement,struct node **nodeStart){ // createNode fonk. kullanmadan. without createNode func.
     struct node *newNode = (struct node*)malloc(sizeof(struct node));
     newNode -> data = newElement;
@@ -86,6 +70,25 @@ void siraliEkle(int newElement, struct node **nodeStart){
     *nodeStart = newNode;
 }
 */
+
+void sequentialInsert(int newElement, struct node **nodeStart){
+    struct node *element, *temp, *iter;
+    iter = *nodeStart;
+    while(iter -> next != NULL && iter -> data <= newElement){
+        temp = iter;
+        iter = iter -> next;
+    }
+    element = createNode(newElement);
+    if(iter == *nodeStart){
+        element -> next = *nodeStart;
+        *nodeStart = element; 
+    }
+    else{
+        temp -> next = element;
+        element -> next = iter; 
+    }
+}
+
 void orderList(struct node **nodeStart){
     struct node *a, *b, *c, *d;
     if(*nodeStart == NULL || (*nodeStart) -> next == NULL){
@@ -112,6 +115,26 @@ void orderList(struct node **nodeStart){
         }
 }
 
+int findMinimum(struct node **nodeStart){  // Finds the min. value of list
+    struct node *temp = *nodeStart;
+    int min = temp -> data;
+    temp = temp -> next;
+    
+    while(temp -> next != NULL){
+        if(temp -> data <= min){
+            min = temp -> data;
+        }
+        temp = temp -> next;
+    }
+    return min;
+}
+
+void deleteSecond(struct node **nodeStart){  // Deletes the second element of list.
+    struct node *temp = (*nodeStart) -> next;
+    (*nodeStart) -> next = temp -> next;
+    free(temp);
+}
+
 int main()
 {   
     struct node *root;
@@ -123,7 +146,7 @@ int main()
     addToEnd3(31,&root);
     addtoTop(10,&root);
     addtoTop2(15,&root);
-    siraliEkle(22,&root);
+    sequentialInsert(22,&root);
     orderList(&root);
     
     
