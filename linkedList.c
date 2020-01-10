@@ -63,13 +63,13 @@ void addtoTop(int newElement, struct node **nodeStart){
     *nodeStart = newNode;
 }
 
-/*void addtoTop2(int newElement,struct node **nodeStart){ // createNode fonk. kullanmadan. without createNode func.
+void addtoTop2(int newElement,struct node **nodeStart){ // createNode fonk. kullanmadan. without createNode func.
     struct node *newNode = (struct node*)malloc(sizeof(struct node));
     newNode -> data = newElement;
     newNode -> next = *nodeStart;
     *nodeStart = newNode;
 }
-*/
+
 
 void sequentialInsert(int newElement, struct node **nodeStart){
     struct node *element, *temp, *iter;
@@ -146,11 +146,9 @@ int main()
     addToEnd3(31,&root);
     addtoTop(10,&root);
     addtoTop2(15,&root);
-    sequentialInsert(22,&root);
+    
     orderList(&root);
-    
-    
-    
+    sequentialInsert(22,&root);
     
     printFunc(root);
     
