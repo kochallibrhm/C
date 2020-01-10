@@ -22,7 +22,7 @@ void printFunc(struct node *nodeStart){
     }
 }
 
-/*void addToEnd(int newElement, struct node *nodeStart){
+/*void addToEnd(int newElement, struct node *nodeStart){ // Different types of addToEnd.
     while(nodeStart -> next != NULL){
         nodeStart = nodeStart -> next;
     }
@@ -111,27 +111,7 @@ void orderList(struct node **nodeStart){
                 }
         }
 }
-/*
-void siralilisteyeEkle(struct node **listebasi, int icerik){ // Hocanın istediği gibi. 2017 vize sorusu.
-    struct node *eklenen, *gezici, *tutucu;
-    gezici = *listebasi;
-    while(gezici -> next != NULL && gezici -> data <= icerik){
-        tutucu = gezici;
-        gezici = gezici -> next;
-    }
-    eklenen = (struct node*)malloc(sizeof(struct node));
-    eklenen -> data = icerik;
-    eklenen -> next = NULL;
-    if(gezici == *listebasi){
-        eklenen -> next = *listebasi;
-        *listebasi = eklenen;
-    }
-    else{
-        eklenen -> next = gezici;
-        tutucu -> next = eklenen;
-    }
-}
-*/
+
 int main()
 {   
     struct node *root;
