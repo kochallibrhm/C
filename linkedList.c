@@ -16,7 +16,7 @@ struct node *createNode(int firstElement){
 void printFunc(struct node *nodeStart){
     int i = 1;
     while(nodeStart != NULL){
-        printf("%d. eleman: %d\n",i,nodeStart -> data);
+        printf("%d. element: %d\n",i,nodeStart -> data);
         nodeStart = nodeStart -> next;
         i++;
     }
