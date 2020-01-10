@@ -89,15 +89,18 @@ int isLeaf(struct node* tree, int key){ //the function that returns 1 if the key
 }
 
 int isLeafNotRecursive(struct node *tree, int key){  // the function that returns 1 if the key is leaf node. NOT recursive.
-    
-    while(tree -> left == NULL && tree -> right == NULL){
     if(tree == NULL)
         return -1;
+        
+    while(tree -> data != key){
     if(key > tree -> data)
         tree = tree -> right;
     tree = tree -> left;
     }
-    return 1;
+    
+    if(tree -> left == NULL && tree -> right == NULL)
+        return 1;
+    return -1;
 }
 
 
