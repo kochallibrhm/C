@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#define min(X, Y) (((X) < (Y)) ? (X) : (Y))
 
 struct node{
     int data;
@@ -103,6 +104,22 @@ int isLeafNotRecursive(struct node *tree, int key){  // the function that return
     return -1;
 }
 
+int minDepth(struct node *tree){  // The function that gives the minimum depth of tree. 
+    if(tree == NULL)
+        return 0;
+        
+    if(tree -> left == NULL && tree -> right == NULL)
+        return 1;
+        
+    if(tree -> right == NULL)
+        return minDepth(tree -> left) + 1;
+        
+    if(tree -> left == NULL)
+        return minDepth(tree -> right) + 1;
+        
+    return min(minDepth(tree -> left), minDepth(tree -> right)) + 1;
+}
+
 
 int main()
 {
@@ -127,8 +144,9 @@ int main()
     
     int min = funcMin(tree);
     printf("\nMin value: %d",min);
+    
+    int mindepth = minDepth(tree);
+    printf("\nMindepth: %d",mindepth);
 
     return 0;
 }
-
-
