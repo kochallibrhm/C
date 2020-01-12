@@ -120,6 +120,17 @@ int minDepth(struct node *tree){  // The function that gives the minimum depth o
     return min(minDepth(tree -> left), minDepth(tree -> right)) + 1;
 }
 
+int numberOfLeaf(struct node *tree){
+   
+    if(tree == NULL)
+        return 0;
+        
+    if(tree -> left == NULL && tree -> right == NULL)
+        return 1;
+    
+    return numberOfLeaf(tree -> right) + numberOfLeaf(tree -> left);
+}
+
 
 int main()
 {
@@ -147,6 +158,9 @@ int main()
     
     int mindepth = minDepth(tree);
     printf("\nMindepth: %d",mindepth);
+    
+    int leafNumber = numberOfLeaf(tree);
+    printf("\nNumber of Leaf in Tree: %d",leafNumber);
 
     return 0;
 }
