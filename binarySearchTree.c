@@ -10,17 +10,18 @@ struct node{
 
 struct node* add(struct node *tree, int key){
     if(tree == NULL){
-        struct node* root = (struct node*)malloc(sizeof(struct node));
-        root -> left = NULL;
-        root -> right = NULL;
-        root -> data = key;
-        return root;
+        struct node *newNode = (struct node*)malloc(sizeof(struct node));
+        newNode -> data = key;
+        newNode -> left = NULL;
+        newNode -> right = NULL;
+        return newNode;
     }
     
     if(key > tree -> data){
         tree -> right = add(tree -> right, key);
         return tree;
     }
+    
     tree -> left = add(tree -> left, key);
     return tree;
 }
@@ -131,6 +132,15 @@ int numberOfLeaf(struct node *tree){
     return numberOfLeaf(tree -> right) + numberOfLeaf(tree -> left);
 }
 
+int numberOfEvenNumber(struct node *tree){
+    if(tree == NULL)
+        return 0;
+   
+    if(tree -> data % 2 == 0)
+        return numberOfEvenNumber(tree -> left) + numberOfEvenNumber(tree -> right) + 1;
+        
+    return numberOfEvenNumber(tree -> left) + numberOfEvenNumber(tree -> right);
+}
 
 int main()
 {
@@ -140,7 +150,7 @@ int main()
     tree = add(tree, 24);
     tree = add(tree, 4);
     tree = add(tree, 44);
-    tree = add(tree, 2);
+    tree = add(tree, 1);
     tree = add(tree, 54);
     print_inorder(tree);
     
@@ -161,6 +171,9 @@ int main()
     
     int leafNumber = numberOfLeaf(tree);
     printf("\nNumber of Leaf in Tree: %d",leafNumber);
+    
+    int evenNumber = numberOfEvenNumber(tree);
+    printf("\nNumber of Even Number in Tree: %d",evenNumber);
 
     return 0;
 }
